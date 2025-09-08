@@ -1,17 +1,16 @@
 """Utilities for distribution strategy with JAX backend."""
 
+import collections
+import itertools
+
 import jax
 import numpy as np
+from jax import jax_utils
+from jax import tree_util
 
 from keras.src.backend.common import global_state
 from keras.src.random import seed_generator
 from keras.src.utils import jax_utils
-from keras.src.utils import rng_utils
-import collections
-import itertools
-from jax import tree_util, jax_utils
-from keras.src.backend.common import global_state
-from keras.src.random import seed_generator
 from keras.src.utils import rng_utils
 
 
@@ -252,6 +251,7 @@ def _to_backend_layout(tensor_layout):
     partition_spec = jax.sharding.PartitionSpec(*tensor_layout.axes)
     jax_mesh = tensor_layout.device_mesh.backend_mesh
     return jax.sharding.NamedSharding(jax_mesh, partition_spec)
+
 
 _JAX_CLASSES_DEFINED = False
 JaxGraph = None

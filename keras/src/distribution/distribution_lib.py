@@ -397,6 +397,7 @@ class Distribution:
     def __str__(self):
         return self.__repr__()
 
+
 @keras_export("keras.distribution.AutoShardDistribution")
 class AutoShardDistribution(Distribution):
     def __init__(
@@ -484,6 +485,7 @@ class AutoShardDistribution(Distribution):
             num_replicas=self._num_process,
         )
         return distributed_dataset.prefetch(tf.data.AUTOTUNE)
+
 
 @keras_export("keras.distribution.DataParallel")
 class DataParallel(Distribution):
